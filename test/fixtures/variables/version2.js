@@ -1,6 +1,6 @@
 var hello = Promise.resolve();
 var c = hello
-function foo (bar, d) {
+function b (bar, d) {
   bar = d;
   var baz = bar;
   return function (xyz) {
@@ -8,6 +8,6 @@ function foo (bar, d) {
   };
 }
 
-function fun (wat) {
+function f (wat) {
   return wat
 }

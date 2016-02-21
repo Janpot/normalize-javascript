@@ -28,6 +28,7 @@
   "dependencies": {
     "babel-generator": "^6.5.0",
     "babel-traverse": "^6.5.0",
-    "babylon": "^6.5.2"
+    "babylon": "^6.5.2",
+    "javascript-stringify": "^1.0.2"
   }
 }
