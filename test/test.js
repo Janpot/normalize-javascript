@@ -5,6 +5,14 @@ var path = require('path');
 
 var fixtureFolders = fs.readdirSync(path.resolve(__dirname, 'fixtures'));
 
+function runTest(script1, script2) {
+  it(`compare ${script1.name} with ${script2.name}`, () => {
+    var norm1 = normalizeJs(script1.content);
+    var norm2 = normalizeJs(script2.content);
+    assert.strictEqual(norm1, norm2);
+  });
+}
+
 describe('normalize-javascript', () => {
   fixtureFolders.forEach(folderName => {
     describe(folderName, () => {
@@ -20,12 +28,16 @@ describe('normalize-javascript', () => {
 
       scripts.slice(1)
         .forEach(script => {
-          it(`compare ${scripts[0].name} with ${script.name}`, () => {
-            var norm1 = normalizeJs(scripts[0].content);
-            var norm2 = normalizeJs(script.content);
-            assert.strictEqual(norm1, norm2);
-          });
+          runTest(scripts[0], script);
         });
     });
+  });
+
+  runTest({
+    name: 'leading-lines',
+    content: '\n\na'
+  }, {
+    name: 'trailing-lines',
+    content: 'a\n\n'
   });
 });
